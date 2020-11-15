@@ -51,7 +51,19 @@
   <audio data-key="72" src="sounds/ride.wav" id="a6"></audio>
   <audio data-key="74" src="sounds/snare.wav" id="a7"></audio>
   <audio data-key="75" src="sounds/tom.wav" id="a8"></audio>
-  <audio data-key="76" src="sounds/tink.wav" id="a9"></audio><script>
+  <audio data-key="76" src="sounds/tink.wav" id="a9"></audio>
+  <script>
+
+    let clicked1 = 0;
+    let clicked2 = 0;
+    let clicked3 = 0;
+    let clicked4 = 0;
+    let clicked5 = 0;
+    let clicked6 = 0;
+    let clicked7 = 0;
+    let clicked8 = 0;
+    let clicked9 = 0;
+
     let clap = document.getElementById('1');
     let hihat = document.getElementById("2");
     let kick = document.getElementById("3");
@@ -60,33 +72,74 @@
     let ride = document.getElementById("6");
     let snare = document.getElementById("7");
     let tom = document.getElementById("8");
-    let tink = document.getElementById("9");    clap.addEventListener('click', function(){
+    let tink = document.getElementById("9");  
+   const keys = Array.from(document.querySelectorAll('.key'));
+   
+
+    clap.addEventListener('click', function(){
+       ++clicked1;
+       if(clicked1 == 10){
+        removeTransition(keys);
+       }
       playAudio(clap.id);
     });
     hihat.addEventListener('click', function(){
+      ++clicked2;
+      if(clicked2 == 10){
+        removeTransition(keys);
+       }
       playAudio(hihat.id);
     });
     kick.addEventListener('click', function(){
+      ++clicked3;
+      if(clicked3 == 10){
+        removeTransition(keys);
+       }
       playAudio(kick.id);
     });
     openhat.addEventListener('click', function(){
+      ++clicked4;
+      if(clicked4 == 10){
+        removeTransition(keys);
+       }
       playAudio(openhat.id);
     });
     boom.addEventListener('click', function(){
+      ++clicked5;
+      if(clicked5 == 10){
+        removeTransition(keys);
+       }
       playAudio(boom.id);
     });
     ride.addEventListener('click', function(){
+      ++clicked6;
+      if(clicked6 == 10){
+        removeTransition(keys);
+       }
       playAudio(ride.id);
     });
     snare.addEventListener('click', function(){
+      ++clicked7;
+      if(clicked7 == 10){
+        removeTransition(keys);
+       }
       playAudio(snare.id);
     });
     tom.addEventListener('click', function(){
+      ++clicked8;
+      if(clicked8 == 10){
+        removeTransition(keys);
+       }
       playAudio(tom.id);
     });
     tink.addEventListener('click', function(){
+      ++clicked9;
+      if(clicked9 == 10){
+        removeTransition(keys);
+       }
       playAudio(tink.id);
-    })    let a1 = document.getElementById("a1");
+    });    
+    let a1 = document.getElementById("a1");
     let a2 = document.getElementById("a2");
     let a3 = document.getElementById("a3");
     let a4 = document.getElementById("a4");
@@ -94,7 +147,8 @@
     let a6 = document.getElementById("a6");
     let a7 = document.getElementById("a7");
     let a8 = document.getElementById("a8");
-    let a9 = document.getElementById("a9");    function playAudio(id){
+    let a9 = document.getElementById("a9");    
+    function playAudio(id){
       if(id == 1){
         if(a1.play()){
           a1.currentTime = 0;
@@ -150,18 +204,43 @@
         }
       }
       else {      }
+
+    //  console.log("CLICKED1: " + clicked1);
+    //  console.log("CLICKED2: " + clicked2);
+    //  console.log("CLICKED3: " + clicked3);
+    //  console.log("CLICKED4: " + clicked4);
+  
       moveDown(id);
+
       setTimeout(function(){
         document.getElementById(id).classList.remove('playing');
       }, 1000)
     }
-    const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));  function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
-  }  function moveDown(id){
+    
+  
+
+  function removeTransition(id) {
+    keys.forEach(function(key){
+      console.log("KEY: " + key.id);
+      document.getElementById(key.id).style.transform += "translateY(-100px)"
+      // key.property.transitioned = none;
+      // if (key.propertyName == 'transform'){
+      //   return;
+      // }else{
+      //   console.log("ELSE KEY: " + key);
+      //   key.addEventListener('transitionend', removeTransition)
+      // }
+      // key.target.classList.remove('playing');
+    })
+    
+
+  }  
+
+  function moveDown(id){
     document.getElementById(id).style.transform += "translateY(10px)";
   }
+
+
 </script>
 </body>
 </html>
